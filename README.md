@@ -1,4 +1,7 @@
 # Firetime
 A tool for tuning and tracking time estimations using firebase
+Authors:
+- Johannes Peter
+- Matthew Cech
 
-https://matthewcech.github.io/Firetime/
+Temp site: https://matthewcech.github.io/Firetime/
