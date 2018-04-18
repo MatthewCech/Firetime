@@ -5,7 +5,7 @@ Authors:
 - Johannes Peter
 - Matthew Cech
 
-Application Site: https://www.estimated.pw
+Application Site: https://precise.pw
 
 Extensive Breakdown: https://docs.google.com/document/d/10IssJUWZsAPYmpd8yCsa9DPGGQ3Jtp02goiu5FmR3M0/edit?usp=sharing
 
