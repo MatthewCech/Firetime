@@ -1,9 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Firetime</title>
-</head>
-<body>
-	<h2 style="text-align: center;">Soon.</h2>
-</body>
+  <head>
+    <title>Firetime</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="icon" href="/resources/assets/coffee.png" type="image/gif" sizes="32x32">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+  </head>
+
+  <style>
+    body {
+      font-size: 11px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .dot {
+      stroke: #000;
+      size: 10px;
+    }
+
+    .tooltip {
+      position: absolute;
+      width: 200px;
+      height: 28px;
+      pointer-events: none;
+    }
+    
+  </style>
+
+  <body>
+    <h2 class="text-muted">Example Chart<h2>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+
 </html>
