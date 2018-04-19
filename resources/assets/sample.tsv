@@ -1,0 +1,54 @@
+Estimated,Actual,Category,Description
+80,123,MAT250,Space simplification homework (Due Feb 19th)
+60,85,CS381,Genetic Algorithm Assignment Proposition
+30,30,Absence Forms,Get absence forms for GAM ENG230 and one more class
+30,15,ASCIIPlayer.com,Get initial site pointed towards github
+30,45,ASCIIPlayer,Add spacebar pause
+20,24,Time Check,Put most recently compelted in history first.
+10,15,Time Check App,Fix the tab order on the bottom of the time check app
+60,70,Time Check App,Reordering list with + and -
+10,5,Remove refresh timer
+5,6,Fix offset of data points on graph Currently position is top left not center.
+5,8,Timer App,Update timer app name to something better
+10,45,Time Check,Custom time 
+60,85,Timer App,Grey out things that can't be selected.
+10,10,Time Check Delee Button
+10,5,Fix auto-tab on enter for task completion
+30,45,Timer App,Auto Timer Start/Stop buttons plus alert
+20,35,FileUtils,"Save" and "Save As"
+30,60,ENG116 (Due 9/8),5 ways you don't realize movies are controlling your brain
+60,240,ENG116 (Due 9/8),Life as a narrative
+330,300,D&D on Sunday,4pm
+30,7,ENG116,Bluebeard Reading
+15,5,ENG116,Elephant Pit Reading
+45,22,ENG116,Fable One
+45,38,ENG116,Fable two
+30,8,ENG116,Fable Three
+20,45,New task,Desc
+120,150,CS246,Assignment 6 - EQ implementation
+240,180,CS246,Assignment 5 - Band pass filter and filter prediction
+120,240,MAT 258,Study Guide
+240,480,CS211,HW2
+120,180,CS211,Study Guide 
+180,240,CS246,HighLow HiLoPass
+90,80,CS246,Lab9
+240,100,CS246,Assignment 7
+90,90,CS246,Lab10
+10,21,GAM Absences,Email Ellen about game absences to remove peanalties
+5,10,TA Work,Email professor beeman about being a CS260 TA next semester
+240,300,MAT258,Final Programming Assignment
+600,650,ENG116,Final Writeup
+5,5,Console Utils,Get Console Window Size functions then rename existing size funcs
+0,5,IDEA,Library where you get to see messages externally with another window like a separate console window.
+5,5,Console Utils,Implement brute force screen clearing to canvas publicly
+60,46,Design firstUI mockup, CS325 design task
+30,40,Clean the kitchen,Clean up all of the stuff from the pizza party
+120,120,ASCIIPlayer,Investigate reading audio data from existing stream on the computer
+45,4,PHY200L,Finish Lab 4
+120,90,MAT250,(Thursday 10/12) Matrix Inversion Homework4
+90,270,Clean data for MAT345,Clean inital dat aset 
+15,29,CS381,Astar setup and file layout
+30,20,PHY200L,Finish lab report 5
+15,12,CS260,Assignment 2 grading setup - Virtualbox
+120,16,MAT345,Midterm Study
+20,15,CHRIS C EMAIL,Respond to the opportunities email
