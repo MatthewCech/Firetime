@@ -17,6 +17,8 @@ d3.csv("resources/assets/sample.tsv", function(error, data) {
   let margin = {top: 20, right: 30, bottom: 60, left: 40};
   let width = window.innerWidth - margin.left - margin.right - 8;
   let height = 500 - margin.top - margin.bottom;
+  if(width > 800)
+    width = 800;
 
   // x and y linear scales
   let x = d3.scale.linear()
@@ -76,7 +78,11 @@ d3.csv("resources/assets/sample.tsv", function(error, data) {
         .attr("cx", function (d,i) { return x(dataX[i]); } ) // translate x value
         .attr("r", 4.5) // radius of circle
         .style("opacity", 0.5) // opacity of circle
-        .style("fill", function (d,i) { return d3.rgb(25 * (Math.abs(dataX[i] - dataY[i])), 170, 100) }) 
+        .style("fill", function (d,i) { 
+          return d3.rgb(30 * (Math.abs(dataX[i] - dataY[i]))
+                      , 150
+                      , 110 
+        )}) 
         .on("mouseover", function(y, index) {
             tooltip.transition()
                  .duration(200)
