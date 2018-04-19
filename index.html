@@ -2,11 +2,14 @@
 <html>
   <head>
     <title>Firetime</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="icon" href="/resources/assets/coffee.png" type="image/gif" sizes="32x32">
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- links -->
+    <link rel="icon" href="/resources/assets/coffee.png" type="image/gif" sizes="32x32">
+    <link rel="stylesheet" href="/resources/css/defaults.css">
+    <!--link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"-->
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">  
+
     <script src="http://d3js.org/d3.v3.min.js"></script>
 
   </head>
@@ -25,7 +28,6 @@
     }
 
     .dot {
-      stroke: #000;
       size: 10px;
     }
 
@@ -36,11 +38,29 @@
       pointer-events: none;
     }
     
+    .ft-infobox {
+      background-color: rgba(10,60,100,.15);
+      border-radius: 7px;
+    }
+
+    .ft-infobox-inner {
+      margin: 10px;
+    }
+
+    .ft-content {
+      margin-top: 10px;
+    }
+
   </style>
 
   <body>
-    <h2 class="text-muted">Example Chart<h2>
-    <script type="text/javascript" src="index.js"></script>
+    <div class="ft-content container-fluid">
+      <h3 class="no-margin">Basic Data Display</h3>
+      <h4 class="text-muted">
+        <small>An example chart based on data from a student</small>
+      </h4>
+      <script type="text/javascript" src="index.js"></script>
+    </div>
   </body>
 
 </html>

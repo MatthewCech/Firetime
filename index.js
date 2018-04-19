@@ -74,15 +74,15 @@ d3.csv("resources/assets/sample.tsv", function(error, data) {
     .enter().append("svg:circle")  // create a new circle for each value
         .attr("cy", function (d) { return y(d); } ) // translate y value to a pixel
         .attr("cx", function (d,i) { return x(dataX[i]); } ) // translate x value
-        .attr("r", 4) // radius of circle
-        .style("opacity", 0.6) // opacity of circle
+        .attr("r", 4.5) // radius of circle
+        .style("opacity", 0.5) // opacity of circle
+        .style("fill", function (d,i) { return d3.rgb(25 * (Math.abs(dataX[i] - dataY[i])), 170, 100) }) 
         .on("mouseover", function(y, index) {
             tooltip.transition()
                  .duration(200)
                  .style("opacity", .9);
-            tooltip.html(`<strong>${dataCategory[index]}</strong>
-                  <br/>${dataDesc[index]}`)
-                 .style("left", (d3.event.pageX + 5) + "px")
+            tooltip.html(`<div class="ft-infobox"><p class="ft-infobox-inner"><strong>${dataCategory[index]}</strong><br/>${dataDesc[index]}</p></div>`)
+                 .style("left", (d3.event.pageX + 10) + "px")
                  .style("top", (d3.event.pageY - 18) + "px");
         })
         .on("mouseout", function(d) {
@@ -91,11 +91,14 @@ d3.csv("resources/assets/sample.tsv", function(error, data) {
                  .style("opacity", 0);
         });
 
-  chart.append('line')
-      .attr('x1',x(10))
-      .attr('x2',x(20))
-      .attr('y1',y(5))
-      .attr('y2',y(10))
-      .attr('stroke-width', (x)=>{return 30;})
-      .style('fill',"red")
+
+  // Add the diagonal line for reference of a prefect estimate.
+  chart.append("line")                   // Attach a line to the chart
+    .style("stroke", "black")            // Colour the line
+    .attr("x1", margin.left)             // X position of the first end of the line
+    .attr("y1", height + margin.top)     // Y position of the first end of the line
+    .attr("x2", width + margin.left)     // X position of the second end of the line
+    .attr("y2", margin.top)              // Y pos of second point
+    .style("stroke-dasharray", ("3, 3")) // Make the line dashed
+    .style("opacity", 0.4)               // Adjust visibility
 });
