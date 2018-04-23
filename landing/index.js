@@ -1,4 +1,4 @@
-d3.csv("/resources/assets/sample.tsv", function(error, data) {
+d3.csv("/resources/assets/sample.csv", function(error, data) {
   // Variables
   let dataX = [];
   let dataY = [];
