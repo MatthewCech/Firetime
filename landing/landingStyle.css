@@ -1,0 +1,35 @@
+body {
+  font-size: 11px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  size: 10px;
+}
+
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+
+.ft-infobox {
+  background-color: rgba(10,60,100,.15);
+  border-radius: 7px;
+}
+
+.ft-infobox-inner {
+  margin: 10px;
+}
+
+.ft-content {
+  margin-top: 10px;
+}
