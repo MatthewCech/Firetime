@@ -7,7 +7,10 @@
     <!-- links -->
     <link rel="icon" href="/resources/assets/coffee.png" type="image/gif" sizes="32x32">
     <link rel="stylesheet" href="/resources/css/defaults.css">
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <style>
@@ -17,40 +20,63 @@
     margin-right: auto;
     margin-top: 20px;
   }
+  .ft-body {
+    text-align: center;
+    margin-top: 20px;
+  }
   </style>
 
   <body>
-    <div class="ft-form">
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Task Name</label>
-          <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Task Name">
-          <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Task Description</label>
-          <input class="form-control" id="exampleInputPassword1" placeholder="Enter Task Description">
-          <small id="ft-help-description" class="form-text text-muted">Try keeping this short and sweet - one sentence should do!</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Estimated Time in Minutes</label>
-          <input type="number" class="form-control" id="ft-estimated" placeholder="5, 10, 15, 30, 60, 90...">
-          <small id="ft-help-estimated" class="form-text text-muted">Try and keep this under 4 hours! <a href="#">Need a hand estimating?</a></small>
-        </div>
-        <div class="form-group">
-          <label for="exampleSelect2">Color (optional)</label>
-          <select class="form-control" id="ft-color">
-            <option>Violet</option>
-            <option>Indigo</option>
-            <option>Blue</option>
-            <option>Green</option>
-            <option>Yellow</option>
-            <option>Orange</option>
-            <option>Red</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+
+    <div class="container ft-body">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+        Create Task
+      </button>
+    </div>
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="ft-form" style="padding-bottom: 20px;">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Task Name</label>
+            <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Task Name">
+            <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Task Description</label>
+            <input class="form-control" id="exampleInputPassword1" placeholder="Enter Task Description">
+            <small id="ft-help-description" class="form-text text-muted">Try keeping this short and sweet - one sentence should do!</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Estimated Time in Minutes</label>
+            <input type="number" class="form-control" id="ft-estimated" placeholder="5, 10, 15, 30, 60, 90...">
+            <small id="ft-help-estimated" class="form-text text-muted">Try and keep this under 4 hours! <a href="#">Need a hand estimating?</a></small>
+          </div>
+          <div class="form-group">
+            <label for="exampleSelect2">Color (optional)</label>
+            <select class="form-control" id="ft-color" style="height: 100%;">
+              <option>Violet</option>
+              <option>Indigo</option>
+              <option>Blue</option>
+              <option>Green</option>
+              <option>Yellow</option>
+              <option>Orange</option>
+              <option>Red</option>
+            </select>
+          </div>
+          <br/>
+          <div class="text-right">
+          	<button type="submit" class="btn btn-primary">Submit</button>
+      	  </div>
+        </form>
+      </div>
+
+    </div>
+    </div>  
     </div>
   </body>
 
