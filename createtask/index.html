@@ -8,34 +8,92 @@
     <link rel="icon" href="/resources/assets/coffee.png" type="image/gif" sizes="32x32">
     <link rel="stylesheet" href="/resources/css/defaults.css">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <style>
-  .ft-form {
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-  }
-  .ft-body {
-    text-align: center;
-    margin-top: 20px;
-  }
+    .ft-primary {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .ft-partial {
+      width: 90%;
+      background-color: rgb(240,240,240);
+      border-radius: 7px;
+      height: 100px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ft-tasklist {
+      margin-top: 30px;
+    }
+
+    .ft-form {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .ft-body {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .container {
+      text-align: center;
+    }
+    
+    .ft-main-buttons {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
   </style>
 
   <body>
+    <div class="container">
+      <div class="ft-primary">
 
-    <div class="container ft-body">
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
-        Create Task
-      </button>
+        <div>
+          <h3>Active Tasks</h3>
+          <h4><small class="text-muted">This is what you have going on now</small></h4>
+          <hr/>
+          <div class="ft-partial">
+             <h5><small class="text-muted">Nothing yet!</small><h5>
+          </div>
+        </div>
+
+        <div class="ft-tasklist">
+          <h3 >Task List</h3>
+          <h4><small class="text-muted">Choose a task to get started!</small></h4>
+          <hr/>
+          <div class="ft-partial">
+             <h5><small class="text-muted">Nothing yet!</small></h5>
+          </div>
+        </div>
+
+      </div>
+      <div class="ft-main-buttons">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalCreateTask">
+          Create Task
+        </button>
+        <button type="button" class="btn btn-lg">
+          Logout
+        </button>
+      </div>
     </div>
 
 
-  <div class="modal fade" id="myModal" role="dialog">
+
+    <div class="modal fade" id="modalCreateTask" role="dialog">
     <div class="modal-dialog">
     <div class="modal-content">
 
@@ -70,14 +128,15 @@
           </div>
           <br/>
           <div class="text-right">
-          	<button type="submit" class="btn btn-primary">Submit</button>
-      	  </div>
+            <button type="submit" class="btn btn-info">Submit</button> <button type="submit" class="btn">Cancel</button>
+          </div>
         </form>
       </div>
 
     </div>
     </div>  
     </div>
+
   </body>
 
 </html>
