@@ -1,0 +1,47 @@
+.ft-primary {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.ft-partial {
+  width: 70%;
+  min-width: 300px;
+  background-color: rgb(240,240,240);
+  border-radius: 7px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ft-tasklist {
+  margin-top: 30px;
+}
+
+.ft-form {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ft-body {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.container {
+  text-align: center;
+}
+
+.ft-main-buttons {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ft-task-item {
+  
+}

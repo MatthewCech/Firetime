@@ -11,52 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="landing.css">
   </head>
-
-  <style>
-    .ft-primary {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .ft-partial {
-      width: 90%;
-      background-color: rgb(240,240,240);
-      border-radius: 7px;
-      height: 100px;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .ft-tasklist {
-      margin-top: 30px;
-    }
-
-    .ft-form {
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .ft-body {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .container {
-      text-align: center;
-    }
-    
-    .ft-main-buttons {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-  </style>
 
   <body>
     <div class="container">
@@ -67,7 +23,15 @@
           <h4><small class="text-muted">This is what you have going on now</small></h4>
           <hr/>
           <div class="ft-partial">
-             <h5><small class="text-muted">Nothing yet!</small><h5>
+            <div id="ft-task-active">
+             
+              <!-- Default if you load the page and there is nothing >
+              <h4><small class="text-muted">Nothing yet!</small><h4-->
+
+              <div  class=".ft-task-item">
+              </div> 
+
+            </div>
           </div>
         </div>
 
@@ -76,7 +40,12 @@
           <h4><small class="text-muted">Choose a task to get started!</small></h4>
           <hr/>
           <div class="ft-partial">
-             <h5><small class="text-muted">Nothing yet!</small></h5>
+            <div id="ft-task-idle">
+
+              <!-- Default if you load the page and there is nothing -->
+              <h4><small class="text-muted">Nothing yet!</small></h4>
+
+            </div>
           </div>
         </div>
 
@@ -92,7 +61,7 @@
     </div>
 
 
-
+    <!-- This is the modal pop-up that happens when you say 'create task'-->
     <div class="modal fade" id="modalCreateTask" role="dialog">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -100,22 +69,21 @@
       <div class="ft-form" style="padding-bottom: 20px;">
         <form>
           <div class="form-group">
-            <label for="exampleInputEmail1">Task Name</label>
-            <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Task Name">
-            <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
+            <label for="ft-input-name">Task Name</label>
+            <input class="form-control" id="ft-name" aria-describedby="taskName" placeholder="Enter Task Name">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Task Description</label>
-            <input class="form-control" id="exampleInputPassword1" placeholder="Enter Task Description">
+            <label for="ft-input-description">Task Description</label>
+            <input class="form-control" id="ft-description" placeholder="Enter Task Description">
             <small id="ft-help-description" class="form-text text-muted">Try keeping this short and sweet - one sentence should do!</small>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Estimated Time in Minutes</label>
+            <label for="ft-input-estimated">Estimated Time in Minutes</label>
             <input type="number" class="form-control" id="ft-estimated" placeholder="5, 10, 15, 30, 60, 90...">
             <small id="ft-help-estimated" class="form-text text-muted">Try and keep this under 4 hours! <a href="#">Need a hand estimating?</a></small>
           </div>
           <div class="form-group">
-            <label for="exampleSelect2">Color (optional)</label>
+            <label for="ft-input-color">Color (optional)</label>
             <select class="form-control" id="ft-color" style="height: 100%;">
               <option>Violet</option>
               <option>Indigo</option>
