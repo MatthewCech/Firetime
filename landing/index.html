@@ -14,6 +14,74 @@
     <link rel="stylesheet" href="landing.css">
   </head>
 
+  <script type="text/javascript">
+    let tasks_idle = [];
+    let tasks_active = [];
+
+
+    // Makes a unique id for this app by combining some random numbers with the current time.
+    // This will basically always be unique for the purposes of this application, if there
+    // are two events with the same ID then you've caused a cosmic anomaly, and the 
+    // universe is just a complete lie. This is a trash sandwich.
+    function makeID() {
+      function trash() {
+        return Math.floor((1 + Math.random()) * 0x10000);
+      }
+      return `${trash()}${Date.now()}${trash()}`;
+    }
+
+
+    function makeTaskActive(element) {
+      console.log(e.getAttribute("taskid"));
+    }
+
+    function createTask(e) {
+
+      // Stop us from navigating by default with a form
+      e.preventDefault();
+
+      // Parse all info out of the form
+      let task = {
+        id: makeID(),
+        name: document.getElementById("ft-name").value,
+        description: document.getElementById("ft-description").value,
+        timeEstimated: parseInt(document.getElementById("ft-estimated").value),
+        color: document.getElementById("ft-color").value,
+        timeCreated: Date.now(),
+      };
+      
+      // Sorry johannes
+      let task_html =
+       `<div class="ft-task-item text-left" taskid="${task.id}">
+          <div class="row">
+            <div class="col-sm ft-task-name">
+              <strong style="color: ${task.color};">${task.name}</strong>
+            </div>
+            <div class="col-sm-8 ft-task-desc">
+              <p>${task.description}</p>
+            </div>
+            <div class="col-sm-1 ft-task-time">
+              <p>${task.timeEstimated}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Add us to the visible items as necessary.
+      if(tasks_idle.length == 0) {
+        document.getElementById("ft-tasklist-idle").innerHTML = task_html;
+      }
+      else {
+        let inner = document.getElementById("ft-tasklist-active").innerHTML;
+        document.getElementById("ft-tasklist-idle").innerHTML += task_html;
+      }
+
+      tasks_idle.push(task);
+    }
+
+  </script>
+
+
   <body>
     <div class="container">
       <div class="ft-primary">
@@ -23,13 +91,10 @@
           <h4><small class="text-muted">This is what you have going on now</small></h4>
           <hr/>
           <div class="ft-partial">
-            <div id="ft-task-active">
+            <div id="ft-tasklist-active">
              
-              <!-- Default if you load the page and there is nothing >
-              <h4><small class="text-muted">Nothing yet!</small><h4-->
-
-              <div  class=".ft-task-item">
-              </div> 
+              <!-- Default if you load the page and there is nothing -->
+              <h4><small class="text-muted">Nothing yet!</small><h4>
 
             </div>
           </div>
@@ -37,10 +102,10 @@
 
         <div class="ft-tasklist">
           <h3 >Task List</h3>
-          <h4><small class="text-muted">Choose a task to get started!</small></h4>
+          <h4><small class="text-muted">Select a task to get started!</small></h4>
           <hr/>
           <div class="ft-partial">
-            <div id="ft-task-idle">
+            <div id="ft-tasklist-idle">
 
               <!-- Default if you load the page and there is nothing -->
               <h4><small class="text-muted">Nothing yet!</small></h4>
@@ -67,10 +132,10 @@
     <div class="modal-content">
 
       <div class="ft-form" style="padding-bottom: 20px;">
-        <form>
+        <form onsubmit="return createTask(event)">
           <div class="form-group">
-            <label for="ft-input-name">Task Name</label>
-            <input class="form-control" id="ft-name" aria-describedby="taskName" placeholder="Enter Task Name">
+            <label for="ft-input-name">Task Name <span class="ft-asterisk">*</span></label>
+            <input class="form-control" id="ft-name" aria-describedby="taskName" placeholder="Enter Task Name" required>
           </div>
           <div class="form-group">
             <label for="ft-input-description">Task Description</label>
@@ -78,13 +143,14 @@
             <small id="ft-help-description" class="form-text text-muted">Try keeping this short and sweet - one sentence should do!</small>
           </div>
           <div class="form-group">
-            <label for="ft-input-estimated">Estimated Time in Minutes</label>
-            <input type="number" class="form-control" id="ft-estimated" placeholder="5, 10, 15, 30, 60, 90...">
+            <label for="ft-input-estimated">Estimated Time in Minutes <span class="ft-asterisk">*</span></label>
+            <input type="number" class="form-control" id="ft-estimated" placeholder="5, 10, 15, 30, 60, 90..." required>
             <small id="ft-help-estimated" class="form-text text-muted">Try and keep this under 4 hours! <a href="#">Need a hand estimating?</a></small>
           </div>
           <div class="form-group">
-            <label for="ft-input-color">Color (optional)</label>
+            <label for="ft-input-color">Color</label>
             <select class="form-control" id="ft-color" style="height: 100%;">
+              <option>Grey</option>
               <option>Violet</option>
               <option>Indigo</option>
               <option>Blue</option>
@@ -94,9 +160,11 @@
               <option>Red</option>
             </select>
           </div>
+            <small id="ft-required-field" class="form-text text-muted font-italic"><span class="ft-asterisk">*</span> Indicates required field</small>
           <br/>
           <div class="text-right">
-            <button type="submit" class="btn btn-info">Submit</button> <button type="submit" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-info">Submit</button> 
+            <button type="button" class="btn" onclick="$('#modalCreateTask').modal('toggle');">Cancel</button>
           </div>
         </form>
       </div>
