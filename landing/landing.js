@@ -4,6 +4,7 @@ let tasks_alive = [];
 let tasks_complete = [];
 let activeCount = 0;
 let inactiveCount = 0;
+let completedCount = 0;
 
 // Load in all previous tasks! Logged key and object to console as well.
 tasksRef.once("value", function(snapshot) {
@@ -28,6 +29,27 @@ function makeID() {
 // Toggles the task creation thing
 function toggleTaskCreate() {
   $('#modalCreateTask').modal('toggle');
+}
+
+function makeTaskComplete(id) {
+  let element = document.getElementById(id);
+
+  // Update visuals
+  if(activeCount == 0)
+    document.getElementById("ft-tasklist-finished").innerHTML = "";
+  document.getElementById("ft-tasklist-finished").appendChild(element);
+  document.getElementById("toggle-" + id).innerHTML = "";
+
+  // Update firebase
+  tasksRef.child(id + "/alive").transaction(() => {
+    return false;
+  }).then(() => { 
+    tasks_complete[id] = tasks_alive[id];
+    delete tasks_alive[id];
+  });
+
+  // If necessary, display 'nothing yet', and update values
+  ++completedCount;
 }
 
 function makeTaskActive(id) {
@@ -64,9 +86,9 @@ function deleteTask(id) {
   element.parentNode.removeChild(element);
 
   // Update firebase
-  tasksRef.child(id).delete();
-  tasks_complete[id] = tasks_alive[id];
-  delete tasks_alive[id];
+  tasksRef.child(id+"").remove().then(()=>{
+    delete tasks_alive[id];
+  });
 }
 
 function makeTaskInactive(id) {
@@ -101,7 +123,7 @@ function taskToHTML(task) {
   return `<div class="ft-task-item text-left" id="${task.id}" taskactive=false>
       <div class="row" style="display: flex;"> <!-- In theory, onclick could be added to the entire div. -->
         <div class="col-xs ft-task-name" id="toggle-${"" + task.id}">
-        ${task.active ? 
+        ${(!task.alive) ? "" : (task.active ? 
          `<a href="javascript:makeTaskComplete('${task.id}'); ">
             <i class="fas fa-check fa-2x"></i></a>
           <a href="javascript:makeTaskInactive('${task.id}'); ">
@@ -111,7 +133,7 @@ function taskToHTML(task) {
             <i class="fas fa-plus fa-2x"></i></a>
           <a href="javascript:deleteTask('${task.id}');">
             <i class="far fa-trash-alt fa-2x"></i></a>` 
-        }
+        )}
         </div>
         <div class="col-sm-2 ft-task-name align-middle">
           <strong style="color: ${task.color}; ">${task.name}</strong>
@@ -133,7 +155,6 @@ function loadTask(task) {
 
   // update variables
   if(task.alive) {
-
     if(task.active) {
       if(activeCount == 0)
         document.getElementById("ft-tasklist-active").innerHTML = ""; 
@@ -150,7 +171,12 @@ function loadTask(task) {
     
     tasks_alive[task.id] = task;
   } else {
+    if(completedCount == 0)
+      document.getElementById("ft-tasklist-finished").innerHTML = ""; 
+
+    document.getElementById("ft-tasklist-finished").innerHTML += taskToHTML(task);
     tasks_complete[task.id] = task;
+    ++completedCount;
   }
   
 }
@@ -168,6 +194,7 @@ function createTask(e) {
     timeEstimated: parseInt(document.getElementById("ft-estimated").value),
     color: document.getElementById("ft-color").value,
     timeCreated: Date.now(),
+    timeEnded: 0,
     alive: true,
     active: false,
   };

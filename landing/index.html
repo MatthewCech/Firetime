@@ -23,12 +23,12 @@
           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalCreateTask">
             Create Task
           </button>
-          <button type="button" class="btn btn-lg">
+          <button type="button" class="btn btn-lg" onclick="window.location='..';">
             Logout
           </button>
         </div>
-
         <div class="ft-primary">
+
 
           <div>
             <h3>Active Tasks</h3>
@@ -44,7 +44,7 @@
             </div>
           </div>
 
-          <div class="ft-tasklist">
+          <div class="ft-tasklist-buffer">
             <h3 >Task List</h3>
             <h4><small class="text-muted">Select a task to get started!</small></h4>
             <hr/>
@@ -57,6 +57,21 @@
               </div>
             </div>
           </div>
+
+          <div class="ft-tasklist-buffer">
+            <h3 >Task List</h3>
+            <h4><small class="text-muted">Select a task to get started!</small></h4>
+            <hr/>
+            <div class="ft-partial">
+              <div id="ft-tasklist-finished">
+
+                <!-- Default if you load the page and there is nothing -->
+                <h4><small class="text-muted">Nothing yet!</small></h4>
+
+              </div>
+            </div>
+          </div>
+
 
         </div>
       </div>

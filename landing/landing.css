@@ -18,7 +18,7 @@
   justify-content: center;
 }
 
-.ft-tasklist {
+.ft-tasklist-buffer {
   margin-top: 30px;
 }
 
@@ -51,6 +51,12 @@
 }
 
 #ft-tasklist-idle {
+  width: 90%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#ft-tasklist-finished {
   width: 90%;
   margin: 0px;
   padding: 0px;
