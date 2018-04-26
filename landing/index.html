@@ -23,7 +23,7 @@
           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalCreateTask">
             Create Task
           </button>
-          <button type="button" class="btn btn-lg" onclick="window.location='..';">
+          <button type="button" class="btn btn-lg" onclick="window.location='/';">
             Logout
           </button>
         </div>
@@ -33,7 +33,6 @@
           <div>
             <h3>Active Tasks</h3>
             <h4><small class="text-muted">This is what you have going on now</small></h4>
-            <hr/>
             <div class="ft-partial">
               <div id="ft-tasklist-active">
                
@@ -43,11 +42,11 @@
               </div>
             </div>
           </div>
+          <hr/>
 
           <div class="ft-tasklist-buffer">
             <h3 >Task List</h3>
             <h4><small class="text-muted">Select a task to get started!</small></h4>
-            <hr/>
             <div class="ft-partial">
               <div id="ft-tasklist-idle">
 
@@ -57,11 +56,11 @@
               </div>
             </div>
           </div>
+          <hr/> 
 
           <div class="ft-tasklist-buffer">
-            <h3 >Task List</h3>
-            <h4><small class="text-muted">Select a task to get started!</small></h4>
-            <hr/>
+            <h3>History</h3>
+            <h4><small class="text-muted">These are things you've completed!</small></h4>
             <div class="ft-partial">
               <div id="ft-tasklist-finished">
 
@@ -72,7 +71,11 @@
             </div>
           </div>
 
-
+        <div class="ft-main-buttons">
+          <button type="button" class="btn btn-info btn-lg">
+            Data Breakdown
+          </button>
+        </div>
         </div>
       </div>
 
@@ -111,9 +114,11 @@
                 <option>Red</option>
               </select>
             </div>
+            <div class="form-group">
               <small id="ft-required-field" class="form-text text-muted font-italic"><span class="ft-asterisk">*</span> Indicates required field</small>
+            </div>
             <br/>
-            <div class="text-right">
+            <div class="form-group text-right">
               <button type="submit" class="btn btn-info">Submit</button> 
               <button type="button" class="btn" onclick="toggleTaskCreate();">Cancel</button>
             </div>

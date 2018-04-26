@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Firetime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- links -->
+    <link rel="icon" href="/resources/assets/coffee.png" type="image/gif" sizes="32x32">
+    <link rel="stylesheet" href="/resources/css/defaults.css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="landing.css">
+  </head>
+  <style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    #bgvid {
+      animation: fadein 3s;
+    }
+
+    video { 
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: 100%;
+      z-index: -100;
+      transform: translateX(-50%) translateY(-50%);
+      background-size: cover;  
+      transition: 2s opacity; 
+      background-color:  font-italic;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .background {
+      padding:20px;
+      filter: z-index:-1; 
+      background-color: rgba(20,30,40,.5);
+      border-radius: 7px;
+      max-width: 400px;
+      min-width: 300px;
+      color: white;
+      text-align: center;
+    }
+
+    .ft-aligner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #enhance {
+      margin-left: auto;
+      margin-right: auto;
+      color: rgb(245,245,245);
+    }
+
+  </style>
+  <script type="text/javascript">
+    function videoResize() {
+      targetHeight = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+      console.log("SDIJF")
+      targetWidth = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      if(document.getElementById("bgvid").offsetWidth < targetWidth) {
+        document.getElementById("bgvid").style.width = "100%";
+        document.getElementById("bgvid").style.height = "auto";
+      }
+
+      if(document.getElementById("bgvid").offsetHeight < targetHeight) {
+        document.getElementById("bgvid").style.width = "auto";
+        document.getElementById("bgvid").style.height = "100%";
+      }
+    } 
+
+
+  </script>
+  <body onresize="videoResize();">
+    <video autoplay muted id="bgvid">
+      <source src="https://gcs-vimeo.akamaized.net/exp=1524744222~acl=%2A%2F771216520.mp4%2A~hmac=397331df20f9bb97a11d5fa401b9f0ce1ba4a030acb706faf2d413e351d13fd0/vimeo-prod-skyfire-std-us/01/4242/8/221214113/771216520.mp4" type="video/mp4"></source>
+    </video>
+
+    <div id="aligner" class="ft-aligner">
+      <div class="container background">
+        <h1>Precise.pw</h1>
+        <p class="font-italic">Estimating your goals one task at a time</p>
+        <hr/>
+        <button id="enhance" class="btn btn-lg btn-info" onclick="window.location='/landing'">Start doing things</button>
+      </div>
+    </div>
+  </body>
+</html>
