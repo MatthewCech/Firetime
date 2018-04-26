@@ -1,0 +1,100 @@
+body {
+  background-image: url("squairy_light.png");
+}
+
+.ft-primary {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.ft-partial {
+  width: 70%;
+  min-width: 300px;
+  background-color: rgb(245,245,245);
+  border-radius: 7px;
+  padding: 0px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ft-tasklist-buffer {
+  margin-top: 30px;
+}
+
+.ft-form {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ft-body {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.container {
+  text-align: center;
+}
+
+.ft-main-buttons {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#ft-tasklist-active {
+  width: 90%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#ft-tasklist-idle {
+  width: 90%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#ft-tasklist-finished {
+  width: 90%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.ft-task-item {
+  border-radius: 3px;
+  margin: 2px;
+  background-color: rgb(235,235,235);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+
+.ft-task-name {
+
+}
+
+.ft-task-desc {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.ft-task-time {
+  margin-right: 5px;
+}
+
+.ft-asterisk {
+  color: red;
+}
+
+.form-group {
+  margin-left: 5px;
+  margin-right: 5px;
+}
