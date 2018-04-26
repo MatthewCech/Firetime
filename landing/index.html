@@ -13,128 +13,10 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
       <link rel="stylesheet" href="landing.css">
+
+      <!-- Firebase script -->
+      <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     </head>
-
-    <script type="text/javascript">
-      let tasks_alive = [];
-      let activeCount = 0;
-      let inactiveCount = 0;
-
-      // Makes a unique id string for this app by combining some random numbers with the 
-      // current time. This will basically always be unique for the purposes of this 
-      // application, if there are two items with the same ID then you've caused a cosmic 
-      // anomaly, and the universe is just a complete lie. This is a trash sandwich.
-      function makeID() {
-        function trash() {
-          return Math.floor((1 + Math.random()) * 0x10000);
-        }
-        return `${trash()}${Date.now()}${trash()}`;
-      }
-
-      function toggleTaskCreate() {
-        $('#modalCreateTask').modal('toggle');
-      }
-
-      function thenDo(id) {
-
-      }
-
-      function makeTaskActive(id) {
-        let element = document.getElementById(id);
-
-        // Update visuals
-        if(activeCount == 0)
-          document.getElementById("ft-tasklist-active").innerHTML = "";
-     
-        document.getElementById("ft-tasklist-active").appendChild(element);
-        document.getElementById("toggle-" + id).innerHTML =`
-          <a href="javascript:makeTaskComplete('${id}'); ">
-            <i class="fas fa-check fa-2x"></i></a>
-          <a href="javascript:makeTaskInactive('${id}'); ">
-            <i class="fas fa-minus fa-2x"></i></a>
-        `;
-
-        if(inactiveCount <= 1) {
-          inactiveCount = 0;
-          console.log("Here");
-          document.getElementById("ft-tasklist-idle").innerHTML = `<h4><small class="text-muted">Nothing yet!</small></h4>`;
-        }
-        ++activeCount;
-      }
-
-      function makeTaskInactive(id) {
-        let element = document.getElementById(id);
-        
-        // Update visuals
-        if(inactiveCount == 0)
-          document.getElementById("ft-tasklist-idle").innerHTML = "";
-     
-        document.getElementById("ft-tasklist-idle").appendChild(element);
-        document.getElementById("toggle-" + id).innerHTML =`
-          <a href="javascript:makeTaskActive('${id}');">
-            <i class="fas fa-plus fa-2x"></i><i class="fas fa-plus fa-2x invisible"></i></a>
-        `;
-
-
-        if(activeCount <= 1) {
-          activeCount = 0;
-          document.getElementById("ft-tasklist-active").innerHTML = `<h4><small class="text-muted">Nothing yet!</small></h4>`;
-        }
-        ++inactiveCount;
-      }
-
-      // Not lovely, but could be a DOM object some other day.
-      function taskToHTML(task) {
-        return `<div class="ft-task-item text-left" id="${task.id}" taskactive=false>
-            <div class="row"> <!-- In theory, onclick could be added to the entire div. -->
-              <div class="col-xs ft-task-name" id="toggle-${"" + task.id}">
-                <a href="javascript:makeTaskActive('${task.id}');">
-                  <i class="fas fa-plus fa-2x"></i>
-                  <i class="fas fa-plus fa-2x invisible"></i>
-                </a>
-              </div>
-              <div class="col-sm-2 ft-task-name align-middle">
-                <strong style="color: ${task.color}; ">${task.name}</strong>
-              </div>
-              <div class="col-sm-7 ft-task-desc align-middle">
-                <p>${task.description}</p>
-              </div>
-              <div class="col-sm-1 ft-task-time align-middle">
-                <p>${task.timeEstimated}</p>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      function createTask(e) {
-        // Stop us from navigating by default with a form
-        e.preventDefault();
-
-        // Parse all info out of the form
-        let task = {
-          id: makeID(),
-          name: document.getElementById("ft-name").value,
-          description: document.getElementById("ft-description").value,
-          timeEstimated: parseInt(document.getElementById("ft-estimated").value),
-          color: document.getElementById("ft-color").value,
-          timeCreated: Date.now(),
-        };
-
-        if(inactiveCount == 0)
-          document.getElementById("ft-tasklist-idle").innerHTML = "";
-        
-        document.getElementById("ft-tasklist-idle").innerHTML += taskToHTML(task);
-        
-        // update variables
-        tasks_alive[task.id] = task;
-        ++inactiveCount;
-        toggleTaskCreate();
-      }
-
-    </script>
-
-
     <body>
       <div class="container">
         <div class="ft-main-buttons">
@@ -228,5 +110,5 @@
       </div>
 
     </body>
-
+    <script type="text/javascript" src="landing.js"></script>
   </html>
