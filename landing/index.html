@@ -1,0 +1,134 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Firetime</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <!-- links -->
+      <link rel="icon" href="/resources/assets/coffee.png" type="image/gif" sizes="32x32">
+      <link rel="stylesheet" href="/resources/css/defaults.css">
+      <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+      <link rel="stylesheet" href="landing.css">
+
+      <!-- Firebase script -->
+      <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    </head>
+    <body>
+      <div class="container">
+        <div class="ft-main-buttons">
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalCreateTask">
+            Create Task
+          </button>
+          <button type="button" class="btn btn-lg" onclick="window.location='/';">
+            Logout
+          </button>
+        </div>
+        <div class="ft-primary">
+
+
+          <div>
+            <h3>Active Tasks</h3>
+            <h4><small class="text-muted">This is what you have going on now</small></h4>
+            <div class="ft-partial">
+              <div id="ft-tasklist-active">
+               
+                <!-- Default if you load the page and there is nothing -->
+                <h4><small class="text-muted">Nothing yet!</small><h4>
+
+              </div>
+            </div>
+          </div>
+          <hr/>
+
+          <div class="ft-tasklist-buffer">
+            <h3 >Task List</h3>
+            <h4><small class="text-muted">Select a task to get started!</small></h4>
+            <div class="ft-partial">
+              <div id="ft-tasklist-idle">
+
+                <!-- Default if you load the page and there is nothing -->
+                <h4><small class="text-muted">Nothing yet!</small></h4>
+
+              </div>
+            </div>
+          </div>
+          <hr/> 
+
+          <div class="ft-tasklist-buffer">
+            <h3>History</h3>
+            <h4><small class="text-muted">These are things you've completed!</small></h4>
+            <div class="ft-partial">
+              <div id="ft-tasklist-finished">
+
+                <!-- Default if you load the page and there is nothing -->
+                <h4><small class="text-muted">Nothing yet!</small></h4>
+
+              </div>
+            </div>
+          </div>
+
+        <div class="ft-main-buttons">
+          <button type="button" class="btn btn-info btn-lg">
+            Data Breakdown
+          </button>
+        </div>
+        </div>
+      </div>
+
+
+      <!-- This is the modal pop-up that happens when you say 'create task'-->
+      <div class="modal fade" id="modalCreateTask" role="dialog">
+      <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="ft-form" style="padding-bottom: 20px;">
+          <form onsubmit="return createTask(event)">
+            <div class="form-group">
+              <label for="ft-input-name">Task Name <span class="ft-asterisk">*</span></label>
+              <input class="form-control" id="ft-name" aria-describedby="taskName" placeholder="Enter Task Name" required>
+            </div>
+            <div class="form-group">
+              <label for="ft-input-description">Task Description</label>
+              <input class="form-control" id="ft-description" placeholder="Enter Task Description">
+              <small id="ft-help-description" class="form-text text-muted">Try keeping this short and sweet - one sentence should do!</small>
+            </div>
+            <div class="form-group">
+              <label for="ft-input-estimated">Estimated Time in Minutes <span class="ft-asterisk">*</span></label>
+              <input type="number" class="form-control" id="ft-estimated" placeholder="5, 10, 15, 30, 60, 90..." required>
+              <small id="ft-help-estimated" class="form-text text-muted">Try and keep this under 4 hours! <a href="#">Need a hand estimating?</a></small>
+            </div>
+            <div class="form-group">
+              <label for="ft-input-color">Color</label>
+              <select class="form-control" id="ft-color" style="height: 100%;">
+                <option>Grey</option>
+                <option>Violet</option>
+                <option>Indigo</option>
+                <option>Blue</option>
+                <option>Green</option>
+                <option>Yellow</option>
+                <option>Orange</option>
+                <option>Red</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <small id="ft-required-field" class="form-text text-muted font-italic"><span class="ft-asterisk">*</span> Indicates required field</small>
+            </div>
+            <br/>
+            <div class="form-group text-right">
+              <button type="submit" class="btn btn-info">Submit</button> 
+              <button type="button" class="btn" onclick="toggleTaskCreate();">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+      </div>  
+      </div>
+
+    </body>
+    <script type="text/javascript" src="landing.js"></script>
+  </html>
