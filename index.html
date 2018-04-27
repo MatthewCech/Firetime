@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="/resources/css/defaults.css">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Vollkorn" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <link rel="stylesheet" href="landing.css">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans|Vollkorn" rel="stylesheet">
   </head>
   <style type="text/css">
     body {
@@ -42,10 +41,10 @@
       to   { opacity: 1; }
     }
 
-    .background {
+    .ft-background {
       padding:20px;
       filter: z-index:-1; 
-      background-color: rgba(20,30,40,.5);
+      background-color: rgba(20,20,30,.45);
       border-radius: 7px;
       max-width: 350px;
       min-width: 250px;
@@ -96,7 +95,6 @@
       }
     } 
 
-
   </script>
   <body onresize="videoResize();">
     <video autoplay muted id="bgvid">
@@ -104,11 +102,11 @@
     </video>
 
     <div id="aligner" class="ft-aligner">
-      <div class="container background">
-        <h1>Precise</h1>
+      <div class="container ft-background">
+        <h1><i class="fas fa-tasks"></i> Precise.pw</h1>
         <p class="font-italic">Estimating your goals, one task at a time.</p>
         <hr/>
-        <button id="enhance" class="btn btn-lg btn-info" onclick="window.location='/landing'">Start sucking less</button>
+        <button id="enhance" class="btn btn-lg btn-info" onclick="window.location='/landing'">Start Sucking Less</button>
       </div>
     </div>
   </body>
