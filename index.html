@@ -11,91 +11,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Vollkorn" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css"> 
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+    
   </head>
-  <style type="text/css">
-    body {
-        background-color: white;
-    }
-
-    #bgvid {
-      animation: fadein 3s;
-    }
-
-    video { 
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: auto;
-      height: 100%;
-      z-index: -100;
-      transform: translateX(-50%) translateY(-50%);
-      background-size: cover;  
-      transition: 2s opacity; 
-      background-color:  font-italic;
-    }
-
-    @keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    .ft-background {
-      padding:20px;
-      filter: z-index:-1; 
-      background-color: rgba(20,20,30,.45);
-      border-radius: 7px;
-      max-width: 350px;
-      min-width: 250px;
-      color: white;
-      text-align: center;
-    }
-
-    .ft-aligner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 60vh;
-    }
-
-    #enhance {
-      margin-left: auto;
-      margin-right: auto;
-      color: rgb(245,245,245);
-    }
-
-    h1 {
-      font-family: 'Vollkorn', serif;
-    }
-
-    p {
-      font-family: 'Open Sans', sans-serif;
-    }
-
-  </style>
-  <script type="text/javascript">
-    function videoResize() {
-      targetHeight = window.innerHeight
-      || document.documentElement.clientHeight
-      || document.body.clientHeight;
-      console.log("SDIJF")
-      targetWidth = window.innerWidth
-      || document.documentElement.clientWidth
-      || document.body.clientWidth;
-
-      if(document.getElementById("bgvid").offsetWidth < targetWidth) {
-        document.getElementById("bgvid").style.width = "100%";
-        document.getElementById("bgvid").style.height = "auto";
-      }
-
-      if(document.getElementById("bgvid").offsetHeight < targetHeight) {
-        document.getElementById("bgvid").style.width = "auto";
-        document.getElementById("bgvid").style.height = "100%";
-      }
-    } 
-
-  </script>
   <body onresize="videoResize();">
     <video autoplay muted id="bgvid">
       <source src="/resources/assets/suspiciously_generic_stock_footage.mp4" type="video/mp4"></source>

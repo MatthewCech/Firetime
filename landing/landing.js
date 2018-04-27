@@ -2,7 +2,7 @@
  // JavaScript that really needs to run first //
 ///////////////////////////////////////////////
 // Show the loading overlay until we turn it off later.
-$('#modalLoading').modal('show');
+showLoading();
 
 
 
@@ -37,8 +37,9 @@ tasksRef.once("value", function(snapshot) {
   });
 }).then(()=>{
   startupComplete = true; //!!! Could create a dead zone moment
-  $('#modalLoading').modal('hide');
+  hideLoading();
 });
+
 
 // A new task was created, either locally or remotely! Lets load it.
 firebaseRef.on('child_added', (snapshot) => {
@@ -46,12 +47,14 @@ firebaseRef.on('child_added', (snapshot) => {
     loadTaskLocally(snapshot.val());
 });
 
+
 // A task was updated either locally or remotely - lets update it by 
 // removing the old version we have, then loading it back in again!
 firebaseRef.on('child_changed', (snapshot) => {
   removeIDLocally(snapshot.key());
   loadTaskLocally(snapshot.val());
 });
+
 
 // A remote task was loaded
 firebaseRef.on('child_removed', (snapshot) => {
@@ -64,17 +67,6 @@ firebaseRef.on('child_removed', (snapshot) => {
   //////////////////////////////////////////
  // Task creation and management section //
 //////////////////////////////////////////
-// Makes a unique id string for this app by combining some random numbers with the 
-// current time. This will basically always be unique for the purposes of this 
-// application, if there are two items with the same ID then you've caused a cosmic 
-// anomaly, and the universe is just a complete lie. This is a trash sandwich.
-function makeID() {
-  function trash() {
-    return Math.floor((1 + Math.random()) * 0x10000);
-  }
-  return `${trash()}${Date.now()}${trash()}`;
-}
-
 // Creates the data associated with a task, and sends it off. 
 function createTask(e) {
   // Stop us from navigating by default with a form
@@ -131,6 +123,37 @@ function deleteTask(id) {
 }
 
 
+
+
+  ///////////////////////////////
+ // General utility functions //
+///////////////////////////////
+// Makes a unique id string for this app by combining some random numbers with the 
+// current time. This will basically always be unique for the purposes of this 
+// application, if there are two items with the same ID then you've caused a cosmic 
+// anomaly, and the universe is just a complete lie. This is a trash sandwich.
+function makeID() {
+  function trash() {
+    return Math.floor((1 + Math.random()) * 0x10000);
+  }
+  return `${trash()}${Date.now()}${trash()}`;
+}
+
+// Modal showing and hiding
+function showTaskCreate() {
+  $('#modalCreateTask').modal('show');
+}
+function hideTaskCreate() {
+  $('#modalCreateTask').modal('hide');
+}
+function showLoading() {
+  $('#modalLoading').modal('show');
+}
+function hideLoading() {
+  $('#modalLoading').modal('hide');
+}
+
+
 // Debug stats, for dumping to console. Vaguely formatted intentionally,
 // also formatting is kinda like this to make the string more spaced in code.
 function debugStats() {
@@ -140,6 +163,7 @@ function debugStats() {
     Completed:${completedCount}
   `
 }
+
 
 
 
