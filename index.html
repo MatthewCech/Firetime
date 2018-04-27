@@ -42,10 +42,10 @@
       to   { opacity: 1; }
     }
 
-    .background {
+    .ft-background {
       padding:20px;
       filter: z-index:-1; 
-      background-color: rgba(20,30,40,.5);
+      background-color: rgba(20,20,30,.45);
       border-radius: 7px;
       max-width: 350px;
       min-width: 250px;
@@ -96,7 +96,6 @@
       }
     } 
 
-
   </script>
   <body onresize="videoResize();">
     <video autoplay muted id="bgvid">
@@ -104,11 +103,11 @@
     </video>
 
     <div id="aligner" class="ft-aligner">
-      <div class="container background">
+      <div class="container ft-background">
         <h1>Precise</h1>
         <p class="font-italic">Estimating your goals, one task at a time.</p>
         <hr/>
-        <button id="enhance" class="btn btn-lg btn-info" onclick="window.location='/landing'">Start sucking less</button>
+        <button id="enhance" class="btn btn-lg btn-info" onclick="window.location='/landing'">Start Sucking Less</button>
       </div>
     </div>
   </body>
