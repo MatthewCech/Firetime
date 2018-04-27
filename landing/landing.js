@@ -1,102 +1,62 @@
   ///////////////////////////////////////////////
  // JavaScript that really needs to run first //
 ///////////////////////////////////////////////
+// Show the loading overlay until we turn it off later.
 $('#modalLoading').modal('show');
+
 
 
 
   //////////////////////////////////////////////////////////////////////
  // General functionality: System initialization, task loading, etc. //
 //////////////////////////////////////////////////////////////////////
+// Firebase config
 let firebaseRef = new Firebase('https://firetime-d53fc.firebaseio.com/');
 let tasksRef = firebaseRef;//.child("tasks");
+let startupComplete = false;
+
+// Local data
 let tasks = [];
 let activeCount = 0;
 let inactiveCount = 0;
 let completedCount = 0;
+
+// Enums
 const statuses = { inactive:0, active:1, finished:2 };
+
+
 
 
   ////////////////////////////
  // Firebase event binding //
 ////////////////////////////
-// Load in all previous tasks! Logged key and object to console as well.
+// Load in all previous tasks! When done, toggle the loading overlay off.
 tasksRef.once("value", function(snapshot) {
   snapshot.forEach(function(child) {
-    //console.log(child.key());
-    //console.log(child.val());
     loadTaskLocally(child.val());
   });
 }).then(()=>{
-  // When we're done, toggle the loading overlay off.
+  startupComplete = true; //!!! Could create a dead zone moment
   $('#modalLoading').modal('hide');
 });
 
+// A new task was created, either locally or remotely! Lets load it.
 firebaseRef.on('child_added', (snapshot) => {
-  loadTaskLocally(snapshot.key());
+  if(startupComplete)
+    loadTaskLocally(snapshot.val());
 });
 
-
+// A task was updated either locally or remotely - lets update it by 
+// removing the old version we have, then loading it back in again!
 firebaseRef.on('child_changed', (snapshot) => {
   removeIDLocally(snapshot.key());
   loadTaskLocally(snapshot.val());
 });
 
+// A remote task was loaded
 firebaseRef.on('child_removed', (snapshot) => {
   removeIDLocally(snapshot.key());
 });
-
-
-
-// Loads a task from firebase into the appropriate
-function loadTaskLocally(task) {
-  if(task.status == statuses.active) {
-    if(activeCount == 0)
-      document.getElementById("ft-tasklist-active").innerHTML = ""; 
-    document.getElementById("ft-tasklist-active").innerHTML += taskToHTML(task);
-  } else if(task.status == statuses.inactive) {
-      if(inactiveCount == 0)
-        document.getElementById("ft-tasklist-idle").innerHTML = ""; 
-      document.getElementById("ft-tasklist-idle").innerHTML += taskToHTML(task);
-  } else if(task.status == statuses.finished) {
-    if(completedCount == 0)
-      document.getElementById("ft-tasklist-finished").innerHTML = ""; 
-    document.getElementById("ft-tasklist-finished").innerHTML += taskToHTML(task);
-  } else {
-    console.error("We got a misconfigured task with the following status: " + task.status);
-    return;
-  }
-  
-  tasks[task.id] = task;
-}
-
-
-// LOCAL VISUAL ONLY.
-function removeIDLocally(id) {
-  let element = document.getElementById(id);
-  element.parentNode.removeChild(element);
-  if(tasks[id].status == statuses.inactive) {
-    displayEmptyInactive();
-    --inactiveCount;
-  } 
-  else if(tasks[id].status == statuses.active) {
-    displayEmptyActive();
-    --activeCount;
-  }
-  else if(tasks[id].status == statuses.finished) {
-    --completedCount;
-  }
-  else {
-    console.error("Tried to delete something without a known status. Status seen: " + tasks[id].status);
-    return;
-  }
-
-  delete tasks[id];
-}
-
-
-
-
 
 
 
@@ -182,8 +142,9 @@ function debugStats() {
 }
 
 
-/////////////////////////////////////////////
-// Client-side data and task visualization //
+
+  /////////////////////////////////////////////
+ // Client-side data and task visualization //
 /////////////////////////////////////////////
 // Display text in the active task section about it being empty
 function displayEmptyActive() {
@@ -241,4 +202,51 @@ function taskToHTML(task) {
       </div>
     </div>
   `;
+}
+
+
+// Loads a task from firebase into the appropriate
+function loadTaskLocally(task) {
+  if(task.status == statuses.active) {
+    if(activeCount == 0)
+      document.getElementById("ft-tasklist-active").innerHTML = ""; 
+    document.getElementById("ft-tasklist-active").innerHTML += taskToHTML(task);
+  } else if(task.status == statuses.inactive) {
+      if(inactiveCount == 0)
+        document.getElementById("ft-tasklist-idle").innerHTML = ""; 
+      document.getElementById("ft-tasklist-idle").innerHTML += taskToHTML(task);
+  } else if(task.status == statuses.finished) {
+    if(completedCount == 0)
+      document.getElementById("ft-tasklist-finished").innerHTML = ""; 
+    document.getElementById("ft-tasklist-finished").innerHTML += taskToHTML(task);
+  } else {
+    console.error("We got a misconfigured task with the following status: " + task.status);
+    return;
+  }
+  
+  tasks[task.id] = task;
+}
+
+
+// Locally removes the specified ID and updates variables appropriately.
+function removeIDLocally(id) {
+  let element = document.getElementById(id);
+  element.parentNode.removeChild(element);
+  if(tasks[id].status == statuses.inactive) {
+    displayEmptyInactive();
+    --inactiveCount;
+  } 
+  else if(tasks[id].status == statuses.active) {
+    displayEmptyActive();
+    --activeCount;
+  }
+  else if(tasks[id].status == statuses.finished) {
+    --completedCount;
+  }
+  else {
+    console.error("Tried to delete something without a known status. Status seen: " + tasks[id].status);
+    return;
+  }
+
+  delete tasks[id];
 }
