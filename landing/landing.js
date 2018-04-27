@@ -10,8 +10,7 @@ $('#modalLoading').modal('show');
 //////////////////////////////////////////////////////////////////////
 let firebaseRef = new Firebase('https://firetime-d53fc.firebaseio.com/');
 let tasksRef = firebaseRef;//.child("tasks");
-let tasks_alive = [];
-let tasks_complete = [];
+let tasks = [];
 let activeCount = 0;
 let inactiveCount = 0;
 let completedCount = 0;
@@ -120,15 +119,26 @@ function loadTask(task) {
         document.getElementById("ft-tasklist-idle").innerHTML = ""; 
       document.getElementById("ft-tasklist-idle").innerHTML += taskToHTML(task);
     }
-    tasks_alive[task.id] = task;
+    tasks[task.id] = task;
   } else {
     if(completedCount == 0)
       document.getElementById("ft-tasklist-finished").innerHTML = ""; 
     document.getElementById("ft-tasklist-finished").innerHTML += taskToHTML(task);
-    tasks_complete[task.id] = task;
+    tasks[task.id] = task;
   }
   
 }
+
+
+
+
+
+
+function somethingHappened (snapshot, context) {
+  console.log(context);
+}
+firebaseRef.on('child_changed', somethingHappened);
+
 
 
 
@@ -159,7 +169,7 @@ function createTask(e) {
   document.getElementById("ft-tasklist-idle").innerHTML += taskToHTML(task);
   
   // update variables
-  tasks_alive[task.id] = task;
+  tasks[task.id] = task;
   toggleTaskCreate();
 }
 
@@ -172,16 +182,14 @@ function makeTaskComplete(id) {
     return false;
   }).then(() => { 
     // Update local data
-    tasks_alive[id].alive = false;
-    tasks_alive[id].active = false;
-    tasks_complete[id] = tasks_alive[id];
-    delete tasks_alive[id];
+    tasks[id].alive = false;
+    tasks[id].active = false;
 
     // Update visuals
     let element = document.getElementById(id);
     if(activeCount == 0)
       document.getElementById("ft-tasklist-finished").innerHTML = "";
-    document.getElementById("ft-tasklist-finished").innerHTML += taskToHTML(tasks_complete[id]);
+    document.getElementById("ft-tasklist-finished").innerHTML += taskToHTML(tasks[id]);
 
     // Update display counter and see if we need to display active as empty.
     displayEmptyActive();
@@ -196,20 +204,23 @@ function makeTaskActive(id) {
   tasksRef.child(id + "/active").transaction(() => {
     return true;
   }).then(() => { 
-    // Update local data
-    tasks_alive[id].active = true; 
-    
-    // Update visuals, clearing out placeholder as necessary.
-    let element = document.getElementById(id);
-    element.parentNode.removeChild(element);
-    if(activeCount == 0)
-      document.getElementById("ft-tasklist-active").innerHTML = "";
-    document.getElementById("ft-tasklist-active").innerHTML += taskToHTML(tasks_alive[id]);
-
-    // If necessary, display 'nothing yet', and update values
-    displayEmptyInactive();
-    --inactiveCount;
+    visual_makeTaskActive(id);
   });
+}
+function visual_makeTaskActive(id) {
+// Update local data
+  tasks[id].active = true; 
+  
+  // Update visuals, clearing out placeholder as necessary.
+  let element = document.getElementById(id);
+  element.parentNode.removeChild(element);
+  if(activeCount == 0)
+    document.getElementById("ft-tasklist-active").innerHTML = "";
+  document.getElementById("ft-tasklist-active").innerHTML += taskToHTML(tasks[id]);
+
+  // If necessary, display 'nothing yet', and update values
+  displayEmptyInactive();
+  --inactiveCount;
 }
 
 
@@ -219,20 +230,23 @@ function makeTaskInactive(id) {
   tasksRef.child(id + "/active").transaction((oldVal) => {
     return false;
   }).then(() => { 
-    // Update local data
-    tasks_alive[id].active = false; 
-    
-    // Update visuals: Clear out the "Nothing yet" and re-create task element.
-    let element = document.getElementById(id);
-    element.parentNode.removeChild(element);
-    if(inactiveCount == 0)
-      document.getElementById("ft-tasklist-idle").innerHTML = "";
-    document.getElementById("ft-tasklist-idle").innerHTML += taskToHTML(tasks_alive[id]);
-
-    // If necessary, display 'nothing yet', and update values
-    displayEmptyActive();
-    --activeCount;
+    visual_makeTaskInactive(id);
   });
+}
+function visual_makeTaskInactive(id) {
+  // Update local data
+  tasks[id].active = false; 
+  
+  // Update visuals: Clear out the "Nothing yet" and re-create task element.
+  let element = document.getElementById(id);
+  element.parentNode.removeChild(element);
+  if(inactiveCount == 0)
+    document.getElementById("ft-tasklist-idle").innerHTML = "";
+  document.getElementById("ft-tasklist-idle").innerHTML += taskToHTML(tasks[id]);
+
+  // If necessary, display 'nothing yet', and update values
+  displayEmptyActive();
+  --activeCount;
 }
 
 
@@ -240,15 +254,18 @@ function makeTaskInactive(id) {
 function deleteTask(id) {
   // Update firebase first
   tasksRef.child(id+"").remove().then(()=>{
-    // Update local data
-    delete tasks_alive[id];
-
-    // Update visuals
-    let element = document.getElementById(id); 
-    element.parentNode.removeChild(element);
-    displayEmptyInactive();
-    --inactiveCount;
+    visual_deleteTask();
   });
+}
+function visual_deleteTask(id) {
+  // Update local data
+  delete tasks[id];
+
+  // Update visuals
+  let element = document.getElementById(id); 
+  element.parentNode.removeChild(element);
+  displayEmptyInactive();
+  --inactiveCount;
 }
 
 
