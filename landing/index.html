@@ -17,6 +17,7 @@
       <!-- Firebase script -->
       <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     </head>
+
     <body>
       <div class="container">
         <div class="ft-main-buttons">
@@ -30,9 +31,10 @@
         <div class="ft-primary">
 
 
+
           <div>
             <h3>Active Tasks</h3>
-            <h4><small class="text-muted">This is what you have going on now</small></h4>
+            <h4><small class="text-muted">This is what you have going on now!</small></h4>
             <div class="ft-partial">
               <div id="ft-tasklist-active">
                
@@ -60,7 +62,7 @@
 
           <div class="ft-tasklist-buffer">
             <h3>History</h3>
-            <h4><small class="text-muted">These are things you've completed!</small></h4>
+            <h4><small class="text-muted">Look how far you've come!</small></h4>
             <div class="ft-partial">
               <div id="ft-tasklist-finished">
 
@@ -126,6 +128,19 @@
         </div>
 
       </div>
+      </div>  
+      </div>
+
+
+      <!-- This is the modal pop-up that says LOADING-->
+      <div class="modal fade" id="modalLoading" role="dialog">
+      <div class="modal-dialog">
+        <div class="text-center margin">
+          <div class="ft-aligner">
+            <!-- "Woah, where did that <adjective> loading icon?" I hear you ask. Well, look no further, I got it at https://loading.io/spinner/double-ring! -->
+            <img src="loading.svg" alt="loading animation">
+          </div>
+        </div>
       </div>  
       </div>
 
