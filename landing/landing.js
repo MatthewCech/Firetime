@@ -42,7 +42,7 @@ tasksRef.once("value", function(snapshot) {
 
 
 // A new task was created, either locally or remotely! Lets load it.
-firebaseRef.on('child_added', (snapshot) => {
+tasksRef.on('child_added', (snapshot) => {
   if(startupComplete)
     loadTaskLocally(snapshot.val());
 });
@@ -50,14 +50,14 @@ firebaseRef.on('child_added', (snapshot) => {
 
 // A task was updated either locally or remotely - lets update it by 
 // removing the old version we have, then loading it back in again!
-firebaseRef.on('child_changed', (snapshot) => {
+tasksRef.on('child_changed', (snapshot) => {
   removeIDLocally(snapshot.key());
   loadTaskLocally(snapshot.val());
 });
 
 
 // A remote task was loaded
-firebaseRef.on('child_removed', (snapshot) => {
+tasksRef.on('child_removed', (snapshot) => {
   removeIDLocally(snapshot.key());
 });
 
