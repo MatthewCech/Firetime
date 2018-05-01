@@ -200,14 +200,14 @@ function taskToHTML(task) {
 
 
   return `<div class="ft-task-item text-left" id="${task.id}" taskactive=false>
-        <div class="ft-task-button" id="toggle-${"" + task.id}">
+        <div class="ft-task-button" style="position: absolute; width: 100%;" id="toggle-${"" + task.id}">
         ${(task.status == statuses.finished) ? "" : (task.status == statuses.active ? 
-         `<a href="javascript:makeTaskComplete('${task.id}'); ">
+         `<a style="margin-left: -25px;" href="javascript:makeTaskComplete('${task.id}'); ">
             <i class="fas fa-check fa-2x"></i></a>
-          <a href="javascript:makeTaskInactive('${task.id}'); ">
+          <a style="" href="javascipt:makeTaskInactive('${task.id}'); ">
             <i class="fas fa-minus fa-2x"></i></a>`
           :
-         `<a href="javascript:makeTaskActive('${task.id}');">
+         `<a style="margin-left: -25px;" href="javascript:makeTaskActive('${task.id}');">
             <i class="fas fa-plus fa-2x"></i></a>
           <a href="javascript:deleteTask('${task.id}');">
             <i class="far fa-trash-alt fa-2x"></i></a>` 
