@@ -80,6 +80,7 @@ function createTask(e) {
     timeEstimated: parseInt(document.getElementById("ft-estimated").value),
     color: document.getElementById("ft-color").value,
     timeCreated: Date.now(),
+    timeStarted: 0,
     timeEnded: 0,
     status: statuses.inactive,
   };
@@ -92,8 +93,10 @@ function createTask(e) {
 // This is marking a task as completely done! From here, the task goes in history.
 function makeTaskComplete(id) {
   // Update firebase
-  tasksRef.child(id + "/status").transaction(() => {
-    return statuses.finished;
+  tasksRef.child(id).transaction((item) => {
+    item.timeEnded = Date.now();
+    item.status = statuses.finished;
+    return item; 
   });
 }
 
@@ -101,14 +104,17 @@ function makeTaskComplete(id) {
 // Marks a task as active.
 function makeTaskActive(id) {
   // Update firebase first!
-  tasksRef.child(id + "/status").transaction(() => {
-    return statuses.active;
+  tasksRef.child(id).transaction((item) => {
+    item.timeStarted = Date.now();
+    item.status = statuses.active;
+    return item;
   });
 }
 
 
 // Updates task to be no longer marked as what it was.
 function makeTaskInactive(id) {
+  console.log("makeTaskInactive");
   // Update firebase. Once updated, do all visal and local updates.
   tasksRef.child(id + "/status").transaction((oldVal) => {
     return statuses.inactive;
@@ -198,23 +204,24 @@ function taskToHTML(task) {
   else
     console.warn("Task did not have a status we recognized: " + task.status + ". Will attempt to parse as usual.");
 
+  let offset_left = 10;
+  let offset_right = 30;
 
-  return `<div class="ft-task-item text-left" id="${task.id}" taskactive=false>
-        <div class="ft-task-button" style="position: absolute; width: 100%;" id="toggle-${"" + task.id}">
+  return `
+    <div class="ft-task-item text-left" id="${task.id}" taskactive=false>
+      <div class="row ft-task-row" style="display: flex;"> <!-- In theory, onclick could be added to the entire div. -->
+ 
+        <!------------  COMMENT: Displays 'start' plus for idle, complete for active, nothing for finished. -->
         ${(task.status == statuses.finished) ? "" : (task.status == statuses.active ? 
-         `<a style="margin-left: -25px;" href="javascript:makeTaskComplete('${task.id}'); ">
-            <i class="fas fa-check fa-2x"></i></a>
-          <a style="" href="javascipt:makeTaskInactive('${task.id}'); ">
-            <i class="fas fa-minus fa-2x"></i></a>`
+         `<a class="ft-button-left" href="javascript:makeTaskComplete('${task.id}'); ">
+            <i class="fas fa-check fa-2x"></i></a>`
           :
-         `<a style="margin-left: -25px;" href="javascript:makeTaskActive('${task.id}');">
-            <i class="fas fa-plus fa-2x"></i></a>
-          <a href="javascript:deleteTask('${task.id}');">
-            <i class="far fa-trash-alt fa-2x"></i></a>` 
+         `<a class="ft-button-left" href="javascript:makeTaskActive('${task.id}');">
+            <i class="fas fa-plus fa-2x"></i></a>` 
         )}
-        </div>
-      <div class="row" style="display: flex;"> <!-- In theory, onclick could be added to the entire div. -->
-        <div class="col-sm-3 ft-task-name align-middle">
+
+        <!------------ COMMENT: Consistent columns: Task name, task description, task time estimate. -->
+        <div class="col-sm-2 ft-task-name align-middle">
           <strong style="color: ${task.color}; ">${task.name}</strong>
         </div>
         <div class="col-sm-7 ft-task-desc align-middle">
@@ -223,6 +230,22 @@ function taskToHTML(task) {
         <div class="col-sm-1 ft-task-time align-middle">
           <p>${task.timeEstimated}</p>
         </div>
+
+        <!------------ COMMENT: For completed tasks, show how long it took. -->
+        ${(task.status == statuses.finished) ? 
+        `<div class="col-sm-1 ft-task-time align-middle">
+          <p>${(((task.timeEnded - task.timeStarted) / 1000) / 60).toFixed(2)}</p>
+        </div>` : ""}
+
+        <!------------ COMMENT: show the trash can for deleting idle tasks, minus for making active idle, nothing for finished. -->
+        ${(task.status == statuses.finished) ? "" : (task.status == statuses.active ? 
+         `<a class="ft-button-right" href="javascipt:makeTaskInactive('${task.id}');">
+            <i class="fas fa-minus fa-2x"></i></a>`
+          :
+         `<a class="ft-button-right" href="javascript:deleteTask('${task.id}');">
+            <i class="far fa-trash-alt fa-2x"></i></a>` 
+        )}
+
       </div>
     </div>
   `;

@@ -66,16 +66,6 @@ body {
   padding: 0px;
 }
 
-.ft-task-item {
-  border-radius: 3px;
-  margin: 2px;
-  background-color: rgb(235,235,235);
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 100%;
-}
 
 .ft-task-name {
 
@@ -104,4 +94,38 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+
+
+
+/* Task formatting */
+.ft-task-item {
+  border-radius: 3px;
+  margin: 2px;
+  background-color: rgb(235,235,235);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  position: relative;
+}
+
+.ft-task-row {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.ft-button-left {
+  left: 5px;
+  top: 5px;
+  position: absolute;
+  z-index: 20;
+}
+
+.ft-button-right {
+  right: 5px;
+  top: 5px;
+  position: absolute;
+  z-index: 20;
 }
