@@ -145,6 +145,7 @@ function makeID() {
   return `${trash()}${Date.now()}${trash()}`;
 }
 
+
 // Modal showing and hiding
 function showTaskCreate() {
   $('#modalCreateTask').modal('show');
