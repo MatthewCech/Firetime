@@ -19,6 +19,8 @@
     
   </head>
   <body onresize="videoResize();">
+
+    <!-- Add background video -->
     <video autoplay muted id="bgvid">
       <source src="resources/assets/suspiciously_generic_stock_footage.mp4" type="video/mp4"></source>
     </video>
@@ -29,7 +31,7 @@
         <p class="font-italic">Estimating your goals, one task at a time. Start honing your skills today!</p>
         <hr/>
         <!--button id="enhance" class="btn btn-lg btn-info" disabled onclick="window.location='/'">Login</button-->
-        <button id="enhance" class="btn btn-lg btn-info" onclick="window.location='/landing'">Sandbox</button>
+        <button id="enhance" class="btn btn-lg btn-info" onclick="window.location = window.location + '/landing'">Live Demo</button>
       </div>
     </div>
   </body>
