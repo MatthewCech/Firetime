@@ -1,0 +1,24 @@
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\bin\Debug\TimerApp.exe.config
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\bin\Debug\TimerApp.exe
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\bin\Debug\TimerApp.pdb
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\obj\Debug\TimerApp.csprojResolveAssemblyReference.cache
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\obj\Debug\TimerApp.MainForm.resources
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\obj\Debug\TimerApp.Properties.Resources.resources
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\obj\Debug\TimerApp.csproj.GenerateResource.Cache
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\obj\Debug\TimerApp.exe
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\obj\Debug\TimerApp.pdb
+Z:\TIME THIS, BITCH\TimerApp\TimerApp\obj\Debug\TimerApp.AddItem.resources
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.AddItem.resources
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.Alert.resources
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.Complete.resources
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.MainForm.resources
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.Properties.Resources.resources
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.csproj.GenerateResource.Cache
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.csprojResolveAssemblyReference.cache
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.Confirmation.resources
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimerApp.Edit.resources
+Z:\Floofs\Prototype\TimerApp\bin\Debug\TimeCheck.exe.config
+Z:\Floofs\Prototype\TimerApp\bin\Debug\TimeCheck.exe
+Z:\Floofs\Prototype\TimerApp\bin\Debug\TimeCheck.pdb
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimeCheck.exe
+Z:\Floofs\Prototype\TimerApp\obj\Debug\TimeCheck.pdb

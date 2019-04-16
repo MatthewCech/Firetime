@@ -1,0 +1,14 @@
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.csprojResolveAssemblyReference.cache
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.AddItem.resources
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.Alert.resources
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.Complete.resources
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.MainForm.resources
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.Properties.Resources.resources
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.csproj.GenerateResource.Cache
+Z:\Floofs\Prototype\TimerApp\bin\Release\TimeCheck.exe.config
+Z:\Floofs\Prototype\TimerApp\bin\Release\TimeCheck.exe
+Z:\Floofs\Prototype\TimerApp\bin\Release\TimeCheck.pdb
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.Confirmation.resources
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimerApp.Edit.resources
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimeCheck.exe
+Z:\Floofs\Prototype\TimerApp\obj\Release\TimeCheck.pdb
